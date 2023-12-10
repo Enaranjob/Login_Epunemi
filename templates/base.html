@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Etiqueta meta para la codificación UTF-8 -->
+  <meta charset="UTF-8">
+  <!-- Etiqueta meta para la compatibilidad con dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Enlace al archivo CSS de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- Enlace a hojas de estilo personalizadas -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+  <!-- Título de la página -->
+  <title>Epunemi</title>
+</head>
+<body class="m-0">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-sga fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Cursos' %}">Cursos</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'exit' %}">Salir</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Acceder</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-sga-2" style="height: 11px"></div>
+
+    {% block content %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
